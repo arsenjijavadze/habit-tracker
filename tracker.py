@@ -1,19 +1,42 @@
 import argparse
 
 
-def main():
+def add_habbit() -> None:
+    """Add a new habit to the tracker."""
+    print("Feature to add a new habit is under construction.")
+
+
+def mark_habbit() -> None:
+    """Mark a habbit as completed."""
+    print("Feature to mark a habit as done is under construction.")
+
+
+def show_stats() -> None:
+    """Show statistics for tracked habits."""
+    print("Feature to show habit statistics is under construction.")
+
+
+def main() -> None:
+    """Main entry point for the Habit Tracker CLI."""
     parser = argparse.ArgumentParser(description="Habit Tracker CLI")
     parser.add_argument("command", help="Command to run (e.g., add, mark, stats)")
     args = parser.parse_args()
 
-    if args.command == "add":
-        print("Add a new habit")
-    elif args.command == "mark":
-        print("Mark a habit as done")
-    elif args.command == "stats":
-        print("Show habit statistics")
-    else:
-        print("Unknown command. Use add, mark, or stats.")
+
+    command = args.command.lower()
+   
+
+    try:
+        if command == "add":
+            add_habit()
+        elif command == "mark":
+            mark_habbit()
+        elif command == "stats":
+            show_stats()
+        else:
+            print(f"Unknown command: {command}. Use 'add', 'mark', or 'stats'. ")
+    except Excetion as e:
+        print(f"An error occured: {e}")
 
 
 if __name__ == "__main__":
