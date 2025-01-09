@@ -1,13 +1,13 @@
 import argparse
 
 
-def add_habbit() -> None:
+def add_habit() -> None:
     """Add a new habit to the tracker."""
     print("Feature to add a new habit is under construction.")
 
 
-def mark_habbit() -> None:
-    """Mark a habbit as completed."""
+def mark_habit() -> None:
+    """Mark a habit as completed."""
     print("Feature to mark a habit as done is under construction.")
 
 
@@ -30,12 +30,12 @@ def main() -> None:
         if command == "add":
             add_habit()
         elif command == "mark":
-            mark_habbit()
+            mark_habit()
         elif command == "stats":
             show_stats()
         else:
             print(f"Unknown command: {command}. Use 'add', 'mark', or 'stats'. ")
-    except Excetion as e:
+    except Exception as e:
         print(f"An error occured: {e}")
 
 
