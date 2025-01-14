@@ -22,28 +22,32 @@ def save_data(data: list[dict[str, Any]]) -> None:
     with open(DATA_FILE, "w") as file:
         json.dump(data, file, indent=4)
 
-def add_habit() -> None:
+
+def add_habit(habit_name: str) -> None:
     """Add a new habit to the tracker."""
-    habit_name = input("Enter the name of the new habit: ").strip()
+
+    data = load_data() # Load existing habits 
 
     if not habit_name:
         print("Error: Habit name cannot be empty.")
         return 
 
-    current_time = datetime.now().isoformat() # Get current date and time in ISO format
+    if any(habit['name'].lower() == habit_name.lower() for habit in data):
+        print(f"Habit '{habit_name}' already exists. Please add a unique habit.")
+    else: 
+        # Proceed to add habit
+        current_time = datetime.now().isoformat() # Get current date and time in ISO format
 
-    new_habit = {
-        "name": habit_name,
-        "created_at": current_time, 
-        "completed_dates": [] # Initialize with an empty list of completed dates
-    }
+        new_habit = {
+            "name": habit_name,
+            "created_at": current_time, 
+            "completed_dates": [] # Initialize with an empty list of completed dates
+        }
 
+        data.append(new_habit) # Add the new habit
+        save_data(data) # Save the updated data
+        print(f"Habit '{habit_name}' added successfully!")
 
-    data = load_data() # Load existing habits 
-    data.append(new_habit) # Add the new habit
-    save_data(data) # Save the updated data
-
-    print(f"Habit '{habit_name}' added successfully!")
 
 def mark_habit() -> None:
     """Mark a habit as completed (under construction)."""
